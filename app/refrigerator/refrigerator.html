@@ -1,0 +1,33 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>
+            <span>Refrigerator</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" ng-click="logout()">Logout</md-button>
+    </div>
+</md-toolbar>
+
+
+<div layout="row">
+    <md-content flex  layout-padding>
+        <md-input-container class="md-block" md-no-float flex-gt-sm>
+            <label>Title</label>
+            <input ng-model="newItemTitle" ng-keyup="$event.which === 13 && addItem()"/>
+        </md-input-container>
+    </md-content>
+    <md-content flex-auto="72px" layout-padding>
+        <md-button class="md-fab md-primary md-hue-2" aria-label="Add new item" ng-click="addItem()">
+            <md-icon md-svg-icon="core:add" ></md-icon>
+            <!--<md-icon md-svg-icon="add" ></md-icon>-->
+            <!--<md-icon md-svg-src="images/add-24.svg"></md-icon>-->
+        </md-button>
+    </md-content>
+</div>
+
+<md-list>
+    <md-list-item ng-repeat="item in items | orderBy: ['-hasEnded', '-hasEndedTimes']">
+        <p md-swipe-left="removeItem($event, item)" md-swipe-right="removeItem($event, item)"> {{ item.title }} </p>
+        <md-checkbox class="md-secondary" ng-model="item.hasEnded" ng-true-value="false" ng-false-value="true" ng-change="saveItem(item)"></md-checkbox>
+    </md-list-item>
+</md-list>

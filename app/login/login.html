@@ -1,0 +1,15 @@
+<div layout="column" layout-padding ng-cloak>
+    <md-content class="autoScroll">
+        <md-input-container class="md-icon-float md-block">
+            <label>Email</label>
+            <input ng-model="email" type="email" ng-required="true" />
+        </md-input-container>
+        <md-input-container md-no-float class="md-block">
+            <label>Password</label>
+            <input ng-model="pass" type="password" ng-required="true" ng-keyup="$event.which === 13 && login(email, pass)"/>
+        </md-input-container>
+        <md-input-container>
+            <md-button class="md-raised" ng-click="login(email, pass)">Login</md-button>
+        </md-input-container>
+    </md-content>
+</div>

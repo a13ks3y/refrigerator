@@ -1,0 +1,29 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "items": {
+      ".read": true,
+      ".write": true,
+      ".validate": "newData.isString() && newData.val().length <= 100"
+    },
+    "users": {
+      "$user": {
+        ".read": "auth.uid === $user",
+        ".write": "auth.uid === $user && (!newData.exists() || newData.hasChildren())",
+        "name": {
+          ".validate": "newData.isString() && newData.val().length <= 2000"
+        },
+        "email": {
+          ".validate": "newData.isString() && newData.val().length <= 2000"
+        },
+        "items": {
+          ".validate": true
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    }
+  }
+}
